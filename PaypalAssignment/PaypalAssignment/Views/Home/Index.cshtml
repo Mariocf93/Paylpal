@@ -1,14 +1,75 @@
-﻿
+﻿@model IEnumerable<PaypalAssignment.IPN>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.custom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.buyerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paymentStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.txTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.custom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buyerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paymentStatus)
+        </td>
+    </tr>
+}
+</table>
+
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick">
+    <input type='hidden' name='country' value='Canada'>
+    <input type='hidden' name='lc' value='CA'>
+    <input type='hidden' name='number' value='5317804805663582'>
+    <input type='hidden' name='type' value='mastercard'>
+    <input type='hidden' name='expiry_month' value='02'>
+    <input type='hidden' name='expiry_year' value='2021'>
+    <input type='hidden' name='cvv2' value='595'>
+    <input type='hidden' name='address1' value='102-2915 Norman Avenue'>
+    <input type='hidden' name='city' value='Vancouver'>
+    <input type='hidden' name='state' value='British Columbia'>
+    <input type='hidden' name='zip' value='V3C4H8'>
+    <input type='hidden' name='night_phone_a' value='6139217786'>
+    <input type='hidden' name='email' value='mariocf_93@hotmail.com'>
+    <input type='hidden' name='first_name' value='Mario'>
+    <input type='hidden' name='last_name' value='Chicchon'>
+    <input type="hidden" name="item_name" value="Testitem1" />
+    <input type='hidden' name='custom' value='abc123'>
+    <input type="hidden" name="amount" value="5.95" />
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="quantity" value="12" />
     <input type="hidden" name="hosted_button_id" value="5327MFJ3QWZT6">
     <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
     <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
-
